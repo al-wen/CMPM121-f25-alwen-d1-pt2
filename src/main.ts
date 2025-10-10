@@ -17,11 +17,21 @@ const counterElement = document.getElementById("counter")!;
 button.addEventListener("click", () => {
   console.log("Clowns:", button, counterElement, counter);
   counter++;
-  counterElement.textContent = counter.toString();
+  counterElement.textContent = Math.floor(counter).toString();
 });
 
-setInterval(() => {
-  counter++;
-  counterElement.textContent = counter.toString();
-  console.log("Auto incrementer:", counter);
-}, 1000);
+let lastTime = performance.now();
+
+function update() {
+  const currentTime = performance.now();
+  const timepassed = (currentTime - lastTime) / 1000;
+
+  counter += timepassed;
+
+  counterElement.textContent = Math.floor(counter).toString();
+
+  lastTime = currentTime;
+  requestAnimationFrame(update);
+}
+
+requestAnimationFrame(update);
