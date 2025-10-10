@@ -3,9 +3,9 @@ button#increment {
   color: #fff;
   border: none;
   border-radius: 25px;
-  padding: 12px 32px;
+  padding: 12px 12px;
   font-size: 1.2em;
-  cursor: pointer;
+  cursor: grab;
   transition: background 0.2s;
 }
 
