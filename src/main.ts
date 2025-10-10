@@ -1,6 +1,9 @@
-import exampleIconUrl from "./noun-paperclip-7598668-00449F.png";
+//import exampleIconUrl from "./noun-paperclip-7598668-00449F.png";
 import "./style.css";
 
+// Create basic HTML structure
 document.body.innerHTML = `
-  <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
+  <h1>D1</h1>
+  
+  <button id="increment">🤡</button>
 `;
