@@ -1,5 +1,18 @@
-.icon {
-  width: 64px;
-  vertical-align: top;
-  border: 1px solid salmon;
+button#increment {
+  background-color: #ff70c8;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 32px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button#increment:hover {
+  background-color: #003377;
+}
+
+body {
+  background-color: #fff0f9;
 }
