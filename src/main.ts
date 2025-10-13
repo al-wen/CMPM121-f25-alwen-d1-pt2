@@ -4,12 +4,40 @@ interface Item {
   name: string;
   cost: number;
   rate: number;
+  description: string;
 }
 
 const shopItems: Item[] = [
-  { name: "Clown Tree", cost: 10, rate: 0.1 },
-  { name: "Clown Printer", cost: 100, rate: 2 },
-  { name: "Clown Factory", cost: 1000, rate: 50 },
+  {
+    name: "Clown Tree",
+    cost: 10,
+    rate: 0.1,
+    description: "increases clown rate by 0.1",
+  },
+  {
+    name: "Clown Printer",
+    cost: 100,
+    rate: 2,
+    description: "increases clown rate by 2",
+  },
+  {
+    name: "Clown Factory",
+    cost: 1000,
+    rate: 50,
+    description: "increases clown rate by 50",
+  },
+  {
+    name: "Clown Manufacturing Complex",
+    cost: 10000,
+    rate: 1500,
+    description: "increases clown rate by 1500",
+  },
+  {
+    name: "Blessing of the Clown God",
+    cost: 1000000,
+    rate: 0,
+    description: "doubles clown rate",
+  },
 ];
 
 let counter: number = 0;
@@ -43,7 +71,8 @@ shopItems.forEach((item, index) => {
   upgradeInfoContainer.innerHTML += `
     <p id="upgradeCostText${index}">${item.name}: 
       <span id="upgradeCost${index}">${item.cost}</span> clowns 
-      (Owned: <span id="upgradeOwned${index}">0</span>)
+      (Owned: <span id="upgradeOwned${index}">0</span>)<br>
+      <span style="font-size: 0.8em;">${item.description}</span>
     </p>
   `;
 });
@@ -61,16 +90,16 @@ incrementButton.addEventListener("click", () => {
 
 shopItems.forEach((_, index) => {
   const button = document.getElementById(`upgrade${index}`)!;
-  const costEl = document.getElementById(`upgradeCost${index}`)!;
-  const ownedEl = document.getElementById(`upgradeOwned${index}`)!;
+  const costElement = document.getElementById(`upgradeCost${index}`)!;
+  const ownedElement = document.getElementById(`upgradeOwned${index}`)!;
 
   button.addEventListener("click", () => {
     if (counter >= upgradeCost[index]) {
       counter -= upgradeCost[index];
       upgradeOwned[index]++;
       upgradeCost[index] *= upgradeGrowthRate;
-      costEl.textContent = upgradeCost[index].toFixed(2);
-      ownedEl.textContent = upgradeOwned[index].toString();
+      costElement.textContent = upgradeCost[index].toFixed(2);
+      ownedElement.textContent = upgradeOwned[index].toString();
     }
   });
 });
@@ -87,6 +116,20 @@ function update() {
     rate += upgradeOwned[index] * item.rate;
   });
 
+  if (
+    shopItems.find((item) => item.name === "Blessing of the Clown God") &&
+    upgradeOwned[
+        shopItems.findIndex((item) => item.name === "Blessing of the Clown God")
+      ] > 0
+  ) {
+    rate *= Math.pow(
+      2,
+      upgradeOwned[
+        shopItems.findIndex((item) => item.name === "Blessing of the Clown God")
+      ],
+    );
+  }
+
   counter += rate * timepassed;
   lastTime = currentTime;
 
@@ -96,8 +139,8 @@ function update() {
   } clowns/sec`;
 
   shopItems.forEach((_, index) => {
-    const ownedEl = document.getElementById(`upgradeOwned${index}`)!;
-    ownedEl.textContent = upgradeOwned[index].toString();
+    const ownedElement = document.getElementById(`upgradeOwned${index}`)!;
+    ownedElement.textContent = upgradeOwned[index].toString();
   });
 
   requestAnimationFrame(update);
