@@ -22,7 +22,7 @@ document.body.innerHTML = `
   <h1>Clown Clicker</h1>
   <p>Clowns: <span id="counter">0</span></p>
 
-  <p id="growthRate">Growth Rate: 0 clowns/sec</p>
+  <p id="growthRate">Clown Growth Rate: 0 clowns/sec</p>
   
   <button id="increment">🤡</button></p>
 
@@ -30,9 +30,9 @@ document.body.innerHTML = `
   <button id="upgrade2">Clown Printer</button>
   <button id="upgrade3">Clown Factory</button></p>
 
-  <p id="upgradeCostText1">Tree: <span id="upgradeCost1">${upgradeCost1}</span> clowns (Owned: <span id="upgradeOwned1">0</span>)</p>
-  <p id="upgradeCostText2">Printer: <span id="upgradeCost2">${upgradeCost2}</span> clowns (Owned: <span id="upgradeOwned2">0</span>)</p>
-  <p id="upgradeCostText3">Factory: <span id="upgradeCost3">${upgradeCost3}</span> clowns (Owned: <span id="upgradeOwned3">0</span>)</p>
+  <p id="upgradeCostText1">Clown Tree: <span id="upgradeCost1">${upgradeCost1}</span> clowns (Owned: <span id="upgradeOwned1">0</span>)</p>
+  <p id="upgradeCostText2">Clown Printer: <span id="upgradeCost2">${upgradeCost2}</span> clowns (Owned: <span id="upgradeOwned2">0</span>)</p>
+  <p id="upgradeCostText3">Clown Factory: <span id="upgradeCost3">${upgradeCost3}</span> clowns (Owned: <span id="upgradeOwned3">0</span>)</p>
 `;
 
 // Add click handler
@@ -105,7 +105,9 @@ function update() {
   lastTime = currentTime;
 
   counterElement.textContent = Math.floor(counter).toString();
-  growthRateElement.textContent = `Growth Rate: ${rate.toFixed(2)} clowns/sec`;
+  growthRateElement.textContent = `Clown Growth Rate: ${
+    rate.toFixed(2)
+  } clowns/sec`;
   upgradeOwnedElement1.textContent = upgradeOwned1.toString();
   upgradeOwnedElement2.textContent = upgradeOwned2.toString();
   upgradeOwnedElement3.textContent = upgradeOwned3.toString();
