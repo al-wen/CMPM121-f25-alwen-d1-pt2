@@ -1,65 +1,25 @@
-button#increment {
+button {
   background-color: #ff70c8;
   color: #fff;
   border: none;
+  border-radius: 25px;
+  padding: 6px 6px;
+  font-size: 1em;
+  cursor: grab;
+  transition: background 0.2s;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+/* Hover effect for all buttons */
+button:hover {
+  background-color: #003377;
+}
+
+/* Special style for increment button */
+button#increment {
   border-radius: 50px;
   padding: 12px 12px;
   font-size: 2em;
-  cursor: grab;
-  transition: background 0.2s;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-button#increment:hover {
-  background-color: #003377;
-}
-
-button#upgrade1 {
-  background-color: #ff70c8;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 6px 6px;
-  font-size: 1.2em;
-  cursor: grab;
-  transition: background 0.2s;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-button#upgrade1:hover {
-  background-color: #003377;
-}
-
-button#upgrade2 {
-  background-color: #ff70c8;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 6px 6px;
-  font-size: 1.2em;
-  cursor: grab;
-  transition: background 0.2s;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-button#upgrade2:hover {
-  background-color: #003377;
-}
-
-button#upgrade3 {
-  background-color: #ff70c8;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 6px 6px;
-  font-size: 1.2em;
-  cursor: grab;
-  transition: background 0.2s;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-button#upgrade3:hover {
-  background-color: #003377;
 }
 
 body {
