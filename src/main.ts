@@ -3,9 +3,9 @@ import "./style.css";
 
 let counter: number = 0;
 
-const upgradeCost1: number = 10;
-const upgradeCost2: number = 100;
-const upgradeCost3: number = 1000;
+let upgradeCost1: number = 10;
+let upgradeCost2: number = 100;
+let upgradeCost3: number = 1000;
 
 let upgradeOwned1: number = 0;
 let upgradeOwned2: number = 0;
@@ -14,6 +14,8 @@ let upgradeOwned3: number = 0;
 const upgradeRate1: number = 0.1;
 const upgradeRate2: number = 2.0;
 const upgradeRate3: number = 50.0;
+
+const upgradeGrowthRate: number = 1.15;
 
 // Create basic HTML structure
 document.body.innerHTML = `
@@ -41,9 +43,13 @@ const upgradeButton1 = document.getElementById("upgrade1")!;
 const upgradeButton2 = document.getElementById("upgrade2")!;
 const upgradeButton3 = document.getElementById("upgrade3")!;
 
-const upgradeOwned1Element = document.getElementById("upgradeOwned1")!;
-const upgradeOwned2Element = document.getElementById("upgradeOwned2")!;
-const upgradeOwned3Element = document.getElementById("upgradeOwned3")!;
+const upgradeOwnedElement1 = document.getElementById("upgradeOwned1")!;
+const upgradeOwnedElement2 = document.getElementById("upgradeOwned2")!;
+const upgradeOwnedElement3 = document.getElementById("upgradeOwned3")!;
+
+const upgradeCostElement1 = document.getElementById("upgradeCost1")!;
+const upgradeCostElement2 = document.getElementById("upgradeCost2")!;
+const upgradeCostElement3 = document.getElementById("upgradeCost3")!;
 
 const growthRateElement = document.getElementById("growthRate")!;
 
@@ -59,7 +65,9 @@ upgradeButton1.addEventListener("click", () => {
   if (counter >= upgradeCost1) {
     counter -= upgradeCost1;
     upgradeOwned1 += 1;
-    upgradeOwned1Element.textContent = upgradeOwned1.toString();
+    upgradeCost1 *= upgradeGrowthRate;
+    upgradeOwnedElement1.textContent = upgradeOwned1.toString();
+    upgradeCostElement1.textContent = upgradeCost1.toFixed(2);
   }
 });
 
@@ -67,7 +75,9 @@ upgradeButton2.addEventListener("click", () => {
   if (counter >= upgradeCost2) {
     counter -= upgradeCost2;
     upgradeOwned2 += 1;
-    upgradeOwned2Element.textContent = upgradeOwned2.toString();
+    upgradeCost2 *= upgradeGrowthRate;
+    upgradeOwnedElement2.textContent = upgradeOwned2.toString();
+    upgradeCostElement2.textContent = upgradeCost2.toFixed(2);
   }
 });
 
@@ -75,7 +85,9 @@ upgradeButton3.addEventListener("click", () => {
   if (counter >= upgradeCost3) {
     counter -= upgradeCost3;
     upgradeOwned3 += 1;
-    upgradeOwned3Element.textContent = upgradeOwned3.toString();
+    upgradeCost3 *= upgradeGrowthRate;
+    upgradeOwnedElement3.textContent = upgradeOwned3.toString();
+    upgradeCostElement3.textContent = upgradeCost3.toFixed(2);
   }
 });
 
@@ -94,9 +106,9 @@ function update() {
 
   counterElement.textContent = Math.floor(counter).toString();
   growthRateElement.textContent = `Growth Rate: ${rate.toFixed(2)} clowns/sec`;
-  upgradeOwned1Element.textContent = upgradeOwned1.toString();
-  upgradeOwned2Element.textContent = upgradeOwned2.toString();
-  upgradeOwned3Element.textContent = upgradeOwned3.toString();
+  upgradeOwnedElement1.textContent = upgradeOwned1.toString();
+  upgradeOwnedElement2.textContent = upgradeOwned2.toString();
+  upgradeOwnedElement3.textContent = upgradeOwned3.toString();
   requestAnimationFrame(update);
 }
 
