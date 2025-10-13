@@ -13,18 +13,48 @@ button#increment:hover {
   background-color: #003377;
 }
 
-button#upgrade {
+button#upgrade1 {
   background-color: #ff70c8;
   color: #fff;
   border: none;
-  border-radius: 50px;
-  padding: 12px 12px;
+  border-radius: 25px;
+  padding: 6px 6px;
   font-size: 1.2em;
   cursor: grab;
   transition: background 0.2s;
 }
 
-button#upgrade:hover {
+button#upgrade1:hover {
+  background-color: #003377;
+}
+
+button#upgrade2 {
+  background-color: #ff70c8;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 6px 6px;
+  font-size: 1.2em;
+  cursor: grab;
+  transition: background 0.2s;
+}
+
+button#upgrade2:hover {
+  background-color: #003377;
+}
+
+button#upgrade3 {
+  background-color: #ff70c8;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 6px 6px;
+  font-size: 1.2em;
+  cursor: grab;
+  transition: background 0.2s;
+}
+
+button#upgrade3:hover {
   background-color: #003377;
 }
 
