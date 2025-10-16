@@ -1,3 +1,2 @@
-# CMPM 121 D1 Project
-
-This is the starting point for your CMPM 121 D1 project. The goal of this project is to create a simple web application using TypeScript, Vite, and modern web development practices. Students should make sure to remove _this_ content from their README.md file and replace it with their own project documentation.
+D1
+This project is a incrementer that includes multiple upgrades. The project consists of clicking a button with a clown emoji. Upgrades are all clown themed, and will increaase the number of clowns per second. Theres exists a unique upgrade that doubles the rate of clowns per second.
