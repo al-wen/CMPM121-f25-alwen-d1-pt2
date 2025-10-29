@@ -1,5 +1,7 @@
 import "./style.css";
 
+// ----- GAME DATA -----
+
 interface Item {
   name: string;
   cost: number;
@@ -40,14 +42,15 @@ const shopItems: Item[] = [
   },
 ];
 
-let counter: number = 0;
+let currency: number = 0;
 
 const upgradeGrowthRate: number = 1.15;
 
-const upgradeOwned: number[] = Array(shopItems.length).fill(0);
-const upgradeCost: number[] = shopItems.map((item) => item.cost);
+const purchasedItems: number[] = Array(shopItems.length).fill(0);
+const itemCosts: number[] = shopItems.map((item) => item.cost);
 
-// Create basic HTML structure
+// ----- DOM ELEMENTS -----
+
 document.body.innerHTML = `
   <h1>Clown Clicker</h1>
   <p>Clowns: <span id="counter">0</span></p>
@@ -60,7 +63,6 @@ document.body.innerHTML = `
   <div id="upgradeInfo"></div>
 `;
 
-// Add click handler
 const upgradeButtonsContainer = document.getElementById("upgradeButtons")!;
 const upgradeInfoContainer = document.getElementById("upgradeInfo")!;
 
@@ -81,11 +83,11 @@ const counterElement = document.getElementById("counter")!;
 const growthRateElement = document.getElementById("growthRate")!;
 const incrementButton = document.getElementById("increment")!;
 
-// Buttons
+// ----- EVENT HANDLERS -----
+
 incrementButton.addEventListener("click", () => {
-  console.log("Clowns:", counterElement, counter);
-  counter++;
-  counterElement.textContent = Math.floor(counter).toString();
+  currency++;
+  counterElement.textContent = Math.floor(currency).toString();
 });
 
 shopItems.forEach((_, index) => {
@@ -94,17 +96,18 @@ shopItems.forEach((_, index) => {
   const ownedElement = document.getElementById(`upgradeOwned${index}`)!;
 
   button.addEventListener("click", () => {
-    if (counter >= upgradeCost[index]) {
-      counter -= upgradeCost[index];
-      upgradeOwned[index]++;
-      upgradeCost[index] *= upgradeGrowthRate;
-      costElement.textContent = upgradeCost[index].toFixed(2);
-      ownedElement.textContent = upgradeOwned[index].toString();
+    if (currency >= itemCosts[index]) {
+      currency -= itemCosts[index];
+      purchasedItems[index]++;
+      itemCosts[index] *= upgradeGrowthRate;
+      costElement.textContent = itemCosts[index].toFixed(2);
+      ownedElement.textContent = purchasedItems[index].toString();
     }
   });
 });
 
-// Update
+// ----- GAME LOOP -----
+
 let lastTime = performance.now();
 
 function update() {
@@ -113,34 +116,34 @@ function update() {
 
   let rate = 0;
   shopItems.forEach((item, index) => {
-    rate += upgradeOwned[index] * item.rate;
+    rate += purchasedItems[index] * item.rate;
   });
 
   if (
     shopItems.find((item) => item.name === "Blessing of the Clown God") &&
-    upgradeOwned[
+    purchasedItems[
         shopItems.findIndex((item) => item.name === "Blessing of the Clown God")
       ] > 0
   ) {
     rate *= Math.pow(
       2,
-      upgradeOwned[
+      purchasedItems[
         shopItems.findIndex((item) => item.name === "Blessing of the Clown God")
       ],
     );
   }
 
-  counter += rate * timepassed;
+  currency += rate * timepassed;
   lastTime = currentTime;
 
-  counterElement.textContent = Math.floor(counter).toString();
+  counterElement.textContent = Math.floor(currency).toString();
   growthRateElement.textContent = `Clown Growth Rate: ${
     rate.toFixed(2)
   } clowns/sec`;
 
   shopItems.forEach((_, index) => {
     const ownedElement = document.getElementById(`upgradeOwned${index}`)!;
-    ownedElement.textContent = upgradeOwned[index].toString();
+    ownedElement.textContent = purchasedItems[index].toString();
   });
 
   requestAnimationFrame(update);
