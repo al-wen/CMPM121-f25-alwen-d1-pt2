@@ -57,7 +57,7 @@ document.body.innerHTML = `
 
   <p id="growthRate">Clown Growth Rate: 0 clowns/sec</p>
   
-  <button id="increment">🤡</button></p>
+  <button id="increment" style="font-size: 8rem; padding: 0; border: none; background: none; color: inherit; cursor: pointer;">🤡</button>
 
   <p id="upgradeButtons"></p>
   <div id="upgradeInfo"></div>

@@ -10,12 +10,10 @@ button {
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
-/* Hover effect for all buttons */
 button:hover {
   background-color: #003377;
 }
 
-/* Special style for increment button */
 button#increment {
   border-radius: 50px;
   padding: 12px 12px;
@@ -25,4 +23,5 @@ button#increment {
 body {
   background-color: #fff0f9;
   font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
 }
